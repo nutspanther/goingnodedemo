@@ -5,6 +5,8 @@ var express = require('express'),
     db = mongoose.connection,
     latest = {};
 
+
+
 //Listen to some database connection events
 db.on('error', console.error);
 db.once('open', function() {
@@ -16,6 +18,7 @@ mongoose.connect('mongodb://THEteam:password12345@mongo.onmodulus.net:27017/paqe
 
 //Some Server configuration
 app.use(express.bodyParser());
+app.use("/", express.static(__dirname));
 app.set('view engine', 'ejs');
 
 //Create the movie schema
