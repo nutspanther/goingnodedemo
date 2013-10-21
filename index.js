@@ -4,13 +4,36 @@ var app = require('express')()
 
 server.listen(2014);
 
-app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+app.get('*', function (req, res) {
+    res.sendfile(__dirname + '/index.html');
 });
+           var usernames = {};
+var chat = io
+    .of('/chat')
+    .on('connection', function (socket) {
+        socket.emit('a message', {
+            that: 'only'
+            , '/chat': 'will get'
+        });
+        chat.emit('a message', {
+            everyone: 'in'
+            , '/chat': 'will get'
+        });
+        socket.on('sendchat', function (data) {
+            io.sockets.emit('updatechat', socket.username, data);
+        });
+        socket.on('adduser', function(username){
+            socket.username = username;
+            usernames[username] = username;
+            socket.emit('updatechat', 'SERVER', 'you have connected');
+            socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
+            io.sockets.emit('updateusers', usernames);
+        });
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
+    });
+
+var news = io
+    .of('/news')
+    .on('connection', function (socket) {
+        socket.emit('item', { news: 'item' });
+    });
