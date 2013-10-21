@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>OUR MEGA MUDD TEXT ADVENTURE - Admin</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/admin.css"/>
   </head>
   <body>
 
@@ -12,16 +12,30 @@
     </header>
 
     <section>
-
+      <h2>Create Room</h2>
+      <form id="room-form" action="/rooms" method="post">
+        <label>Room name</label>
+        <input id="room-name"></input>
+        <input id="room-name-button" type="submit"></input>
+      </form>
     </section>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
    <script src="/socket.io/socket.io.js"></script>
    <script>
       var socket = io.connect('http://localhost');
       socket.on('news', function (data) {
          console.log(data);
          socket.emit('my other event', { my: 'data' });
+      });
+
+      $(function() {
+        $('#room-form').bind('submit', function(e) {
+          e.preventDefault();
+          var name = $('#room-name').val();
+          socket.emit('create_room', {"name": name});
+        });
       });
    </script>
   </body>
