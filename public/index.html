@@ -13,7 +13,17 @@
     </header>
 
     <section>
+      <div style="display: inline-block; width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+        <b>USERS</b>
+        <div id="users"></div>
+      </div>
+      <div style="display: inline-block;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+          <div id="conversation"></div>
+          <input id="data" style="width:200px;" />
+          <input type="button" id="datasend" value="send" />
+      </div>
 
+      
     </section>
 
    <script src="/socket.io/socket.io.js"></script>
@@ -49,7 +59,7 @@
            });
        });
    </script>
-
+   
     <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
         <span><b>USERS</b> (</span><span class="total-users">0</span><span>)</span>
         <ul id="users"></ul>
