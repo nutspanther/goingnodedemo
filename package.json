@@ -1,0 +1,25 @@
+{
+  "name": "GoingNode",
+  "version": "0.0.1",
+  "description": "Examples for the Going Node training @ HTML5DevConf2013",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/BusyRich/goingnode.git"
+  },
+  "keywords": [
+    "examples",
+    "goingnode"
+  ],
+  "author": "Richard Key",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "express": "~3.4.1",
+    "mongoose": "~3.6.20",
+    "ejs": "~0.8.4"
+  }
+}
