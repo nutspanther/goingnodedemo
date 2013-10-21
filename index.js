@@ -54,4 +54,12 @@ app.post('/', function(req, res) {
 });
 
 //Start the app
-app.listen(2013);
+//app.listen(2013);
+var io = require('socket.io').listen(2014);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
