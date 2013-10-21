@@ -11,11 +11,10 @@ app.get('*', function (req, res) {
 app.use( express.static( __dirname + '/public' ) );
 
 var usernames = {};
-var chat = io
-    .of('/chat')
-    .on('connection', function (socket) {
+    io.on('connection', function (socket) {
         socket.on('sendchat', function (data) {
             io.sockets.emit('updatechat', socket.username, data);
+            console.log(data);
         });
         socket.on('adduser', function(username){
             socket.username = username;
