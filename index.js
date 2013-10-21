@@ -1,19 +1,28 @@
-var express = require('express'),
-    app = express(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server);
+var express = require('express')
+    , app = express()
+  , server = require('http').createServer(app)
+  , io = require('socket.io').listen(server);
 
 server.listen(2014);
 
-app.get('/admin', function (req, res) {
-  res.sendfile(__dirname + '/public/admin.html');
+app.get('*', function (req, res) {
+    res.sendfile(__dirname + '/public/index.html');
 });
-
 app.use( express.static( __dirname + '/public' ) );
 
-io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+var usernames = {};
+var chat = io
+    .of('/chat')
+    .on('connection', function (socket) {
+        socket.on('sendchat', function (data) {
+            io.sockets.emit('updatechat', socket.username, data);
+        });
+        socket.on('adduser', function(username){
+            socket.username = username;
+            usernames[username] = username;
+            socket.emit('updatechat', 'SERVER', 'you have connected');
+            socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
+            io.sockets.emit('updateusers', usernames);
+        });
+
 });
