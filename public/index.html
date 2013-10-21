@@ -12,19 +12,17 @@
       <h1>OUR MEGA MUDD TEXT ADVENTURE</h1>
     </header>
 
-    <section>
-      <div style="display: inline-block; width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-        <b>USERS</b>
-        <div id="users"></div>
+
+      <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+          <span><b>USERS</b> (</span><span class="total-users">0</span><span>)</span>
+          <ul id="users"></ul>
       </div>
-      <div style="display: inline-block;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+      <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
           <div id="conversation"></div>
           <input id="data" style="width:200px;" />
           <input type="button" id="datasend" value="send" />
-      </div>
+      </div>      
 
-      
-    </section>
 
    <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -59,16 +57,6 @@
            });
        });
    </script>
-   
-    <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-        <span><b>USERS</b> (</span><span class="total-users">0</span><span>)</span>
-        <ul id="users"></ul>
-    </div>
-    <div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-        <div id="conversation"></div>
-        <input id="data" style="width:200px;" />
-        <input type="button" id="datasend" value="send" />
-    </div>
 
   </body>
 </html>
