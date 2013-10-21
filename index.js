@@ -103,7 +103,27 @@ io.sockets.on('connection', function (socket) {
 var usernames = {};
     io.on('connection', function (socket) {
         socket.on('sendchat', function (data) {
-            io.sockets.emit('updatechat', socket.username, data);
+            var movement = data;
+            Location.findOne( { _id: DummyUser.location }, function (err, currLocation) {
+              console.log( "User is at " + currLocation.name );
+              console.log ( "Attempting to move to " + movement );
+              switch ( movement ) {
+                case "north":
+                case "south":
+                case "east":
+                case "west":
+                case "up":
+                case "down":
+                  DummyUser.location = currLocation[ movement];
+                  Location.findOne( { _id: DummyUser.location },
+                                   function (err, currLocation) {
+                                     io.sockets.emit('updatechat', socket.username, currLocation.name);
+                                   });
+                  break;
+                default:
+                    console.log( "Go where now?" );
+              }
+            });
             console.log(data);
         });
         socket.on('adduser', function(username){
