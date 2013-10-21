@@ -1,20 +1,19 @@
 {
-  "name": "GoingNode",
+  "name": "The Great Node MUDD",
   "version": "0.0.1",
-  "description": "Examples for the Going Node training @ HTML5DevConf2013",
+  "description": "Our Project... @ HTML5DevConf2013",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/BusyRich/goingnode.git"
+    "url": "git://github.com/nutspanther/goingnodedemo.git"
   },
   "keywords": [
-    "examples",
     "goingnode"
   ],
-  "author": "Richard Key",
+  "authors": "Beau Watson",
   "license": "BSD",
   "readmeFilename": "README.md",
   "dependencies": {
