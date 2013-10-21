@@ -1,6 +1,7 @@
 var express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
+    io = require('socket.io').listen(app),
     db = mongoose.connection,
     latest = {};
 
@@ -41,21 +42,8 @@ app.get('/', function(req, res) {
   res.render('index', latest);
 });
 
-//Save a movie, set it to the latest
-app.post('/', function(req, res) {
-  new Movie(req.body).save(function(err, movie) {
-    if(err) {
-      return res.send(err.message);
-    }
-
-    latest = movie;
-    res.send(movie.title + ' saved.');
-  });
-});
-
 //Start the app
-//app.listen(2013);
-var io = require('socket.io').listen(2014);
+app.listen(2014);
 
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });

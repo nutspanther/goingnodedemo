@@ -2,23 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Latest Movie</title>
-    <style>
-      body {
-        text-align: center;
-        font-size: 4em;
-      }
-
-      h1, h3 {
-        margin: 0;
-      }
-
-      h1 small {
-        font-size: 0.5em;
-      }
-    </style>
+    <title>OUR MEGA MUDD TEXT ADVENTURE</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
   </head>
   <body>
+
+    <header>
+      <h1>OUR MEGA MUDD TEXT ADVENTURE</h1>
+    </header>
+
+    <section>
+
+    </section>
+
+
    <script src="/socket.io/socket.io.js"></script>
    <script>
       var socket = io.connect('http://localhost');
@@ -27,9 +24,5 @@
          socket.emit('my other event', { my: 'data' });
       });
    </script>
-  <!---
-    <h1><%= title %><small>(<%= release %>)</small></h1>
-    <h3>MPAA Rating: <%= mpaa %></div>
-    --!>
   </body>
 </html>
