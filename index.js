@@ -16,8 +16,8 @@ db.once('open', function() {
 //Connect to the database
 mongoose.connect('mongodb://THEteam:password12345@mongo.onmodulus.net:27017/paqe9huJ');
 
-
-//Create the movie schema
+// BEGIN location schema
+// TODO: Move out
 var locationSchema = new mongoose.Schema({
   name: String ,
   north : schema.Types.ObjectId,
@@ -50,6 +50,32 @@ Lobby.save();
 EastRoom.save();
 NorthRoom.save();
 WestRoom.save();
+// END location schema
+
+app.set('view engine', 'ejs');
+
+var classSchema = new mongoose.Schema({
+  name: String,
+  hp: Number,
+  str: Number,
+  def: Number,
+  spd: Number,
+  mgc: Number
+});
+var Class = mongoose.model('Classes', classSchema);
+
+var classes = [];
+
+Class.find(function(err, cls) {
+    if (err) return console.error(err);
+     classes = cls;
+  });
+
+
+app.get('/get-character', function(req, res) {
+	console.log(classes);
+  res.render('client', {classList: classes});
+});
 
 app.use( express.static( __dirname + '/public' ) );
 

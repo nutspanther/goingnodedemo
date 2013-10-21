@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CHOOSE YOUR CLASS</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  </head>
+  <body>
+
+    <header>
+      <h1>CHOOSE YOUR CLASS</h1>
+    </header>
+
+    <section>
+     <select>
+  <% classList.forEach(function(type){ %>
+    <option><%= type.name %></option>
+  <% }) %>
+</select>
+
+    </section>
+
+  </body>
+</html>
