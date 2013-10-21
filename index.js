@@ -28,6 +28,24 @@ var locationSchema = new mongoose.Schema({
   down  : schema.Types.ObjectId,
 });
 
+var classSchema = new mongoose.Schema({
+  name: String,
+  hp: Number,
+  str: Number,
+  def: Number,
+  spd: Number,
+  mgc: Number
+});
+
+var userSchema = new mongoose.Schema( {
+  name: String,
+  class: schema.Types.ObjectId,
+  location: schema.Types.ObjectId,
+  loggedIn: Boolean
+});
+
+var User = mongoose.model( "User", userSchema );
+
 var Location = mongoose.model( "Location", locationSchema );
 
 var Lobby = new Location( { name: "lobby" } );
@@ -50,18 +68,13 @@ Lobby.save();
 EastRoom.save();
 NorthRoom.save();
 WestRoom.save();
+
+DummyUser = new User ( { name: "bob", location: "Lobby" } );
+
 // END location schema
 
 app.set('view engine', 'ejs');
 
-var classSchema = new mongoose.Schema({
-  name: String,
-  hp: Number,
-  str: Number,
-  def: Number,
-  spd: Number,
-  mgc: Number
-});
 var Class = mongoose.model('Classes', classSchema);
 
 var classes = [];
