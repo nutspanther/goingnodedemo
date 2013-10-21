@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>OUR MEGA MUDD TEXT ADVENTURE</title>
+    <link rel="stylesheet" type="text/css" href="public/css/style.css"/>
+  </head>
+  <body>
+
+    <header>
+      <h1>OUR MEGA MUDD TEXT ADVENTURE</h1>
+    </header>
+
+    <section>
+
+    </section>
+
+
+   <script src="/socket.io/socket.io.js"></script>
+   <script>
+      var socket = io.connect('http://localhost');
+      socket.on('news', function (data) {
+         console.log(data);
+         socket.emit('my other event', { my: 'data' });
+      });
+   </script>
+  </body>
+</html>
