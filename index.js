@@ -85,3 +85,19 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
 });
+
+var usernames = {};
+    io.on('connection', function (socket) {
+        socket.on('sendchat', function (data) {
+            io.sockets.emit('updatechat', socket.username, data);
+            console.log(data);
+        });
+        socket.on('adduser', function(username){
+            socket.username = username;
+            usernames[username] = username;
+            socket.emit('updatechat', 'SERVER', 'you have connected');
+            socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
+            io.sockets.emit('updateusers', usernames);
+        });
+
+});
