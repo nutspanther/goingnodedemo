@@ -69,7 +69,8 @@ EastRoom.save();
 NorthRoom.save();
 WestRoom.save();
 
-DummyUser = new User ( { name: "bob", location: "Lobby" } );
+DummyUser = new User ( { name: "bob", location: Lobby } );
+DummyUser.save();
 
 // END location schema
 
