@@ -29,13 +29,17 @@ mongoose.connect('mongodb://THEteam:password12345@mongo.onmodulus.net:27017/paqe
 });
 var Class = mongoose.model('Classes', classSchema);
 
-var classes = Class.find(function(err, classes) {
+var classes = [];
+
+Class.find(function(err, cls) {
     if (err) return console.error(err);
-    	console.log(classes);
+     classes = cls;
   });
-//Get latest movie
+
+
 app.get('/get-character', function(req, res) {
-  res.render('client', classes);
+	console.log(classes);
+  res.render('client', {classList: classes});
 });
 
 app.use( express.static( __dirname + '/public' ) );

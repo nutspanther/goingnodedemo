@@ -12,7 +12,11 @@
     </header>
 
     <section>
-     <h1></h1>
+     <select>
+  <% classList.forEach(function(type){ %>
+    <option><%= type.name %></option>
+  <% }) %>
+</select>
 
     </section>
 
