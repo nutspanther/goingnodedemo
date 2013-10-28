@@ -14,6 +14,12 @@ chat.on('updateusers', function (data) {
     var totalUsers = $('#users').children().length;
     $('.total-users').html(totalUsers);
 });
+chat.on('chooseclass', function (data) {
+    if (data.length) {
+        chat.emit('setclass', prompt("Choose your class. \n Mage \n Rogue \n Witch \n Warrior"));
+    }
+
+})
 $(function () {
     $('#datasend').click(function () {
         var message = $('#data').val();
@@ -26,22 +32,22 @@ $(function () {
     $('#createUser').click(function () {
         chat.emit('adduser', prompt("What's your name?"));
     });
-    $('#btnUp').click(function(){
+    $('#btnUp').click(function () {
         chat.emit('movement', 'up');
     })
-    $('#btnNorth').click(function(){
+    $('#btnNorth').click(function () {
         chat.emit('movement', 'north');
     })
-    $('#btnDown').click(function(){
+    $('#btnDown').click(function () {
         chat.emit('movement', 'down');
     })
-    $('#btnWest').click(function(){
+    $('#btnWest').click(function () {
         chat.emit('movement', 'west');
     })
-    $('#btnSouth').click(function(){
+    $('#btnSouth').click(function () {
         chat.emit('movement', 'south');
     })
-    $('#btnEast').click(function(){
+    $('#btnEast').click(function () {
         chat.emit('movement', 'east');
     })
     $('#data').keypress(function (e) {

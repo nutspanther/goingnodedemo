@@ -15,7 +15,7 @@
 
 <section>
         <div class="row" style="height:400px;">
-            <div class="col-lg-2" style="display: inline-block;padding:10px;text-align: center;">
+            <div class="col-lg-2" style="display: inline-block;padding:10px;border:1px solid black;text-align: center;height:100%;">
                 <div style="display:table-row;text-align: center;">
                     <div style="display: table-cell;">
                         <button id="btnUp" style="width: 50px;height: 50px;">
@@ -53,13 +53,13 @@
             </div>
 
             <div class="col-lg-8"
-                 style="display: inline-block;overflow-y:scroll;padding:10px;">
-                <div id="conversation"></div>
-                <input id="data" style="width:200px;"/>
-                <input type="button" id="datasend" value="send"/>
+                 style="display: inline-block;overflow-y:scroll;padding:10px;height:100%;border:1px solid black;">
+                <div style="width: 100%" id="conversation"></div>
+                <input id="data" style="width:100%;"/>
+                <input style="display: none" type="submit" id="datasend" value="send"/>
             </div>
             <div class="col-lg-2"
-                 style="display: inline-block;border-right:1px solid black;padding:10px;overflow-y:scroll;">
+                 style="display: inline-block;height:100%;border:1px solid black;padding:10px;overflow-y:scroll;">
                     <button id="createUser" type="button">
                         Create User
                     </button>
