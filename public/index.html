@@ -1,63 +1,85 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>OUR MEGA MUDD TEXT ADVENTURE</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-  </head>
-  <body>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+</head>
+<body>
 
-    <header>
-      <h1>OUR MEGA MUDD TEXT ADVENTURE</h1>
-    </header>
+<header>
+    <h1>OUR MEGA MUDD TEXT ADVENTURE</h1>
+</header>
 
-    <section>
-      <div style="display: inline-block;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
-          <span><b>USERS</b> (</span><span class="total-users">0</span><span>)</span>
-          <ul id="users"></ul>
-      </div>
-      <div style="display: inline-block;width:300px;height:250px;overflow:scroll-y;padding:10px;">
-          <div id="conversation"></div>
-          <input id="data" style="width:200px;" />
-          <input type="button" id="datasend" value="send" />
-      </div>      
+<section>
+        <div class="row" style="height:400px;">
+            <div class="col-lg-2" style="display: inline-block;padding:10px;text-align: center;">
+                <div style="display:table-row;text-align: center;">
+                    <div style="display: table-cell;">
+                        <button id="btnUp" style="width: 50px;height: 50px;">
+                            Up
+                        </button>
+                    </div>
+                    <div style="display: table-cell;">
+                        <button id="btnNorth" style="width: 50px;height: 50px;">
+                            North
+                        </button>
+                    </div>
+                    <div style="display: table-cell;">
+                        <button id="btnDown" style="width: 50px;height: 50px;">
+                            Down
+                        </button>
+                    </div>
+                </div>
+                <div style="display: table-row;text-align: center;">
+                    <div style="display: table-cell;">
+                        <button id="btnWest" style="width: 50px;height: 50px;">
+                            West
+                        </button>
+                    </div>
+                    <div style="display: table-cell;">
+                        <button id="btnSouth" style="width: 50px;height: 50px;">
+                            South
+                        </button>
+                    </div>
+                    <div style="display: table-cell;">
+                        <button id="btnEast" style="width: 50px;height: 50px;">
+                            East
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-    </section>
-   <script src="/socket.io/socket.io.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script>
-       var chat = io.connect('http://localhost:2014/')
-       chat.on('connect', function(){
-           chat.emit('adduser', prompt("What's your name?"));
-       });
-       chat.on('updatechat', function (username, data) {
-           $('#conversation').append('<div>'+'<b>'+username + ':</b> ' + data + '<br>'+ '</div>');
-       });
+            <div class="col-lg-8"
+                 style="display: inline-block;overflow-y:scroll;padding:10px;">
+                <div id="conversation"></div>
+                <input id="data" style="width:200px;"/>
+                <input type="button" id="datasend" value="send"/>
+            </div>
+            <div class="col-lg-2"
+                 style="display: inline-block;border-right:1px solid black;padding:10px;overflow-y:scroll;">
+                    <button id="createUser" type="button">
+                        Create User
+                    </button>
 
-       chat.on('updateusers', function(data) {
-           $('#users').empty();
-           $.each(data, function(key, value) {
-               $('#users').append('<li>' + key + '</li>');
-           });
-          var totalUsers = $('#users').children().length;
-          $('.total-users').html(totalUsers);
-       });
-       $(function(){
-           $('#datasend').click( function() {
-               var message = $('#data').val();
-               $('#data').val('');
-               chat.emit('sendchat', message);
-           });
-           $('#data').keypress(function(e) {
-               if(e.which == 13) {
-                   $(this).blur();
-                   $('#datasend').focus().click();
-                   $(this).focus();
-               }
-           });
-       });
-   </script>
+                <h4><b>USERS</b> <span>(</span><span class="total-users">0</span><span>)</span>    </h4>
+                <ul id="users"></ul>
+            </div>
+        </div>
 
-  </body>
+
+</section>
+<script src="/socket.io/socket.io.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!--<script src="js/bootstrap.js"></script>-->
+<script src="js/app.js"></script>
+<script>
+
+</script>
+
+</body>
 </html>

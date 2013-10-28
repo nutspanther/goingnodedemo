@@ -25,7 +25,7 @@ var locationSchema = new mongoose.Schema({
   east  : schema.Types.ObjectId,
   west  : schema.Types.ObjectId,
   up    : schema.Types.ObjectId,
-  down  : schema.Types.ObjectId,
+  down  : schema.Types.ObjectId
 });
 
 var classSchema = new mongoose.Schema({
@@ -103,27 +103,7 @@ io.sockets.on('connection', function (socket) {
 var usernames = {};
     io.on('connection', function (socket) {
         socket.on('sendchat', function (data) {
-            var movement = data;
-            Location.findOne( { _id: DummyUser.location }, function (err, currLocation) {
-              console.log( "User is at " + currLocation.name );
-              console.log ( "Attempting to move to " + movement );
-              switch ( movement ) {
-                case "north":
-                case "south":
-                case "east":
-                case "west":
-                case "up":
-                case "down":
-                  DummyUser.location = currLocation[ movement];
-                  Location.findOne( { _id: DummyUser.location },
-                                   function (err, currLocation) {
-                                     io.sockets.emit('updatechat', socket.username, currLocation.name);
-                                   });
-                  break;
-                default:
-                    console.log( "Go where now?" );
-              }
-            });
+            io.sockets.emit('updatechat', socket.username, data);
             console.log(data);
         });
         socket.on('adduser', function(username){
@@ -133,5 +113,29 @@ var usernames = {};
             socket.broadcast.emit('updatechat', 'SERVER', username + ' has connected');
             io.sockets.emit('updateusers', usernames);
         });
+        socket.on('movement', function(data){
+            var movement = data;
+            Location.findOne( { _id: DummyUser.location }, function (err, currLocation) {
+                console.log( "User is at " + currLocation.name );
+                console.log ( "Attempting to move to " + movement );
+                switch ( movement ) {
+                    case "north":
+                    case "south":
+                    case "east":
+                    case "west":
+                    case "up":
+                    case "down":
+                        DummyUser.location = currLocation[ movement];
+                        Location.findOne( { _id: DummyUser.location },
+                            function (err, currLocation) {
+                                io.sockets.emit('updatechat', 'SERVER', socket.username + ' has entered the ' + currLocation.name);
+                            });
+                        break;
+                    default:
+                        console.log( "Go where now?" );
+
+                }
+            });
+        })
 
 });

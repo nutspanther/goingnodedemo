@@ -20,6 +20,9 @@
     "express": "~3.4.1",
     "mongoose": "~3.6.20",
     "ejs": "~0.8.4",
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "angular": "0.0.4",
+    "twitter-bootstrap": "~2.1.1",
+    "less": "~1.5.0"
   }
 }
